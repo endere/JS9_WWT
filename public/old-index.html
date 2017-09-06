@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Meteorite Mapper</title>
+    <link rel="icon" href="images/meteor-impact.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="vendor/styles/normalize.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles/icons.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="vendor/jquery-nice-select-1.1.0/css/nice-select.css">
+    <link rel="stylesheet" href="vendor/jquery-nice-select-1.1.0/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Revalia|Source+Sans+Pro" rel="stylesheet">
+
+
+    <script id="about-template" type="text/x-handlebars-template">
+      <article class="prof">
+        <header class="name">
+          <h3>{{{name}}}</h3>
+        </header>
+        <div class="prof-pic" style="background-image: url({{img}});"></div>
+        <section class="about-us">{{{about}}}</section>
+      </article>
+    </script>
+
+  </head>
+  <body>
+    <header id="main-head">
+      <h1>Meteorite Mapper</h1>
+      <div id="meteor-div">
+        <img id="meteor-img" src="http://www.clker.com/cliparts/x/B/D/p/Y/Q/meteor.svg" alt="meteor">
+      </div>
+    </header>
+
+    <section id="map-filters" class="page-tab">
+      <div id="intro">
+        <p>Use the filters to filter meteor landings by decade or size and use the search bar to find a specific location.</p>
+      </div>
+      <div class="map-box">
+
+
+      <div id="filter-div">
+        <ul id="filters">
+
+          <select id="filter-one" class="chosen nice-select">
+            <option selected value="default">Filter by Decade</option>
+            <option class='date' value="1800">1800s</option>
+            <option class='date' value="1810">1810s</option>
+            <option class='date' value="1820">1820s</option>
+            <option class='date' value="1830">1830s</option>
+            <option class='date' value="1840">1840s</option>
+            <option class='date' value="1850">1850s</option>
+            <option class='date' value="1860">1860s</option>
+            <option class='date' value="1870">1870s</option>
+            <option class='date' value="1880">1880s</option>
+            <option class='date' value="1890">1890s</option>
+            <option class='date' value="1900">1900s</option>
+            <option class='date' value="1910">1910s</option>
+            <option class='date' value="1920">1920s</option>
+            <option class='date' value="1930">1930s</option>
+            <option class='date' value="1940">1940s</option>
+            <option class='date' value="1950">1950s</option>
+            <option class='date' value="1960">1960s</option>
+            <option class='date' value="1970">1970s</option>
+            <option class='date' value="1980">1980s</option>
+            <option class='date' value="1990">1990s</option>
+            <option class='date' value="2000">2000s</option>
+            <option class='date' value="2010">2010s</option>
+          </select>
+
+
+          <select id="filter-two" class="chosen nice-select">
+            <option select value="default">Filter by Mass</option>
+            <option class='date' value="huge">huge(100+ kg)</option>
+            <option class='date' value="big">big(10+ kg)</option>
+            <option class='date' value="medium">medium(1-10kg)</option>
+            <option class='date' value="small">small(< 1 kg)</option>
+          </select>
+        </ul>
+      </div>
+
+
+        <div id="map"></div>
+
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+        <script src="scripts/views/mapView.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_E4yGMoGvpoLZw9fR1PKh6jeV1slJXWY&libraries=places&callback=initMap"></script>
+        <button id="chart">Chart Data</button>
+      </div>
+      <div id="canvasHolder">
+        <canvas class="chart" id="shown" width="600" height="400"></canvas>
+      </div>
+      <div class="about-center">
+        <a href="/about" class="btns" id="about-btn">About</a>
+      </div>
+    </section>
+    <section id="about-page" class="page-tab">
+      <h1 id="about-title">About</h1>
+      <a href="/" id="home-btn" class="btns">Home</a>
+      <div id="about"></div>
+    </section>
+    <footer>
+      &copy; 2017 Code Fellows | 301 Project Week | Meteorite Mapper
+    </footer>
+
+    <script src ='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js'></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.7.0/chosen.jquery.min.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="vendor/scripts/handlebars.js"></script>
+    <script src="vendor/jquery-nice-select-1.1.0/js/jquery.nice-select.js"></script>
+    <script src="vendor/scripts/page.js"></script>
+    <script src="scripts/views/meteorView.js"></script>
+    <script src="scripts/models/meteor.js"></script>
+    <script src="scripts/controllers/mapController.js"></script>
+    <script src="scripts/controllers/aboutController.js"></script>
+    <script src="scripts/controllers/routes.js"></script>
+    <script src="scripts/views/aboutUsData.js"></script>
+    <script src="scripts/views/aboutView.js"></script>
+    <script src="scripts/views/chartsView.js"></script>
+  </body>
+</html>
