@@ -1,10 +1,10 @@
 
 
 
-JS9.Image.prototype.testsave = function(fname, type, encoderOpts){
+JS9.Image.prototype.testsave = function(fname, encoderOpts){
     var key,img, ctx;
     var canvas, width, height;
-    if( window.hasOwnProperty("saveAs") ){
+
     fname = fname || "js9.png";
     width = this.display.width;
     height = this.display.height;
@@ -12,7 +12,6 @@ JS9.Image.prototype.testsave = function(fname, type, encoderOpts){
     img = document.createElement("canvas");
     img.setAttribute("width", width);
     img.setAttribute("height", height);
-    console.log('here!!');
     ctx = img.getContext("2d");
     // image display canvas
     ctx.drawImage(this.display.canvas, 0, 0);
@@ -26,27 +25,17 @@ JS9.Image.prototype.testsave = function(fname, type, encoderOpts){
         }
         }
     }
-    // save as specified type
-    type = type || "image/png";
-    // sanity check on quality
-    if( encoderOpts !== undefined ){
-        if( encoderOpts < 0 || encoderOpts > 1 ){
-        encoderOpts = 0.95;
-        }
-    }
-    img.toBlob(function(blob){
-        saveAs(blob, fname);
-    }, type, encoderOpts);
-    } else {
-    JS9.error("no saveAs function available for saving image");
-    }
-    return fname;
+    var imagey_the_image = new Image();
+    image.src = img.toDataURL('image/png')
+    console.log(image);
+    console.log('fname, right here');
+    console.log(fname);
+    return image['src'];
 };
 
 $(document).ready(function(){
-    var flag = false;
     $('#imabutton').click(function(){
         image = JS9.GetImage();
-        image.testsave();
+        window.open(image.testsave());
     })
 });
