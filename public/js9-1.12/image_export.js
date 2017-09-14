@@ -1,11 +1,10 @@
 
 
 
-JS9.Image.prototype.testsave = function(fname, encoderOpts){
+JS9.Image.prototype.getExportURL = function(){
+    //Edited save file code from JS9
     var key,img, ctx;
     var canvas, width, height;
-
-    fname = fname || "js9.png";
     width = this.display.width;
     height = this.display.height;
     // create off-screen canvas, into which we write all canvases
@@ -25,17 +24,14 @@ JS9.Image.prototype.testsave = function(fname, encoderOpts){
         }
         }
     }
-    var imagey_the_image = new Image();
+    var image = new Image();
     image.src = img.toDataURL('image/png')
-    console.log(image);
-    console.log('fname, right here');
-    console.log(fname);
     return image['src'];
 };
 
 $(document).ready(function(){
     $('#imabutton').click(function(){
         image = JS9.GetImage();
-        window.open(image.testsave());
+        window.open(image.getExportURL());
     })
 });
