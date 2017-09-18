@@ -32,6 +32,16 @@ JS9.Image.prototype.getExportURL = function(){
 $(document).ready(function(){
     $('#imabutton').click(function(){
         image = JS9.GetImage();
-        window.open(image.getExportURL());
+        Goto();
+        // console.log(image.getExportURL());
+        $.parseXML('images.wtml');
+        // var file = new File([''], 'images.wtml');
+        // console.log(file);
+        // var reader = new FileReader();
+        // console.log(reader.readAsBinaryString(file));
+        // window.open(image.getExportURL());
+        
+        // wwt.setImage(image.getExportURL());
     })
 });
+
