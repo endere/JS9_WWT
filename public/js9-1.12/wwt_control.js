@@ -1,7 +1,7 @@
 var wwt;
 
 function wwtReady() {
-    // wwt.loadImageCollection("images.wtml"); 
+    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
 }
  
 
@@ -11,14 +11,18 @@ function initialize() {
 }
 
 
-function Goto(url) {
-    loadExternalImage(null, url, function(result){
-        console.log(result);
-    })
-    wwt.gotoRaDecZoom(15 * 16.5496517733333, -23.25002666, 10, false);
+function Goto() {
+    // loadExternalImage(null, url, function(result){
+    //     console.log(result);
+    // })
+    // wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
+    wwt.setForegroundImageByName('Stored Image');
+    wwt.gotoRaDecZoom(10, 5, 10, false);
     }
 
+function test_load(callback){
 
+}
 // function setImage(b){
 //     // var b = wwt.getImagesetByName(a);
 //     wwt.renderContext.set_foregroundImageset(b);

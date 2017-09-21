@@ -111,6 +111,7 @@ var parseWtml = function(wtml) {
             var wtml = $(xml);
             var place = parseWtml(wtml)[0];
             var imageSet = place.get_studyImageset();
+            console.log(place);
             if (place.get_RA() == 1 && place.get_dec() === 0 && imageSet.get_rotation() == 0) {
                 if (callback) {
                     callback({
@@ -119,16 +120,19 @@ var parseWtml = function(wtml) {
                 }
                 return;
             } else {
+                // wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/wtmlreturn');
+                // wwt.setForegroundImageByName('Image File');
+                // console.log(place);
                 wwtlib.WWTControl.singleton.renderContext.set_foregroundImageset(place.get_studyImageset());
                 wwtlib.WWTControl.singleton.gotoTarget(place, false, false, true);
-                if (!crossFader) {
-                    initXFader();
-                }
-                btnFGInfo.hide();
+                // if (!crossFader) {
+                //     initXFader();
+                // }
+                // btnFGInfo.hide();
                 
-                btnOpenWWT.show().attr('href', encodedUrl);
+                // btnOpenWWT.show().attr('href', encodedUrl);
                 
-                showBottomBar(false);
+                // showBottomBar(false);
                 if (callback) {
                     callback({ success: true });
                 }
@@ -146,7 +150,6 @@ var parseWtml = function(wtml) {
         var errCount = 0;
 
         function ajaxError(xhr, status, er) {
-            console.log(encodedUrl);
             if (er === 'Internal Server Error') {
                 errCount++;
                 if (errCount < 10) {

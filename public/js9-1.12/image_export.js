@@ -36,7 +36,9 @@ $(document).ready(function(){
     $('#imabutton').click(function(){
         image = JS9.GetImage();
         flaskRequest(image.getExportURL());
-        Goto('https://wwt-js9-server.herokuapp.com/');
+        // testReq();
+        // url = image.getExportURL();
+        // console.log(url.substr(url.length - 5));
         // $.parseXML('images.wtml');
         // var file = new File([''], 'images.wtml');
         // console.log(file);
@@ -57,14 +59,25 @@ function flaskRequest(attatchment) {
         processData: false,
         contentType: false,
         data: attatchment
-    }).done(success).fail(failed);
+    }).done(updateImage).fail(failed);
 
 }
 function success(response){
-    console.log('success!!');
+    Goto();
+    // Goto('https://wwt-js9-server.herokuapp.com/' + response);
 }
 
 function failed(response){
-    console.log(response);
+    console.log(response)
     console.log('failed');
+}
+
+function updateImage() {
+    $.ajax({
+        type: 'GET',
+        url: 'https://wwt-js9-server.herokuapp.com/',
+        crossDomain: true,
+        processData: false,
+        contentType: false,
+    }).done(success).fail(failed);
 }
