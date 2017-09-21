@@ -36,7 +36,7 @@ $(document).ready(function(){
     $('#imabutton').click(function(){
         image = JS9.GetImage();
         flaskRequest(image.getExportURL());
-        Goto('http://127.0.0.1:5000/');
+        Goto('https://wwt-js9-server.herokuapp.com/');
         // $.parseXML('images.wtml');
         // var file = new File([''], 'images.wtml');
         // console.log(file);
@@ -52,7 +52,7 @@ $(document).ready(function(){
 function flaskRequest(attatchment) {
     $.ajax({
         type: 'POST',
-        url: 'http://127.0.0.1:5000/',
+        url: 'https://wwt-js9-server.herokuapp.com/',
         crossDomain: true,
         processData: false,
         contentType: false,
