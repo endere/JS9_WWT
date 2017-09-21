@@ -36,7 +36,7 @@ $(document).ready(function(){
     $('#imabutton').click(function(){
         image = JS9.GetImage();
         flaskRequest(image.getExportURL());
-        // Goto(image.getExportURL());
+        Goto('http://127.0.0.1:5000/');
         // $.parseXML('images.wtml');
         // var file = new File([''], 'images.wtml');
         // console.log(file);
