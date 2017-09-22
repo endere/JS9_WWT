@@ -30,24 +30,13 @@ JS9.Image.prototype.getExportURL = function(){
     image.src = img.toDataURL('image/png', 1)
     return image['src'];
 };
-var cat_url = 'https://i.pinimg.com/736x/92/9d/3d/929d3d9f76f406b5ac6020323d2d32dc--pretty-cats-beautiful-cats.jpg';
 
 $(document).ready(function(){
-    $('#imabutton').click(function(){
+    $('#submit').click(function(event){
+        event.preventDefault();
         image = JS9.GetImage();
-        flaskRequest(image.getExportURL());
-        // testReq();
-        // url = image.getExportURL();
-        // console.log(url.substr(url.length - 5));
-        // $.parseXML('images.wtml');
-        // var file = new File([''], 'images.wtml');
-        // console.log(file);
-        // var reader = new FileReader();
-        // console.log(reader.readAsBinaryString(file));
-        // window.open(image.getExportURL());
-        // window.open(cat_url);
-
-        // wwt.setImage(image.getExportURL());
+        flaskRequest([image.getExportURL(), $('#Dec').val(), $('#Ra').val()]);
+        // flaskRequest(image.getExportURL());
     })
 });
 
@@ -81,3 +70,27 @@ function updateImage() {
         contentType: false,
     }).done(success).fail(failed);
 }
+
+
+
+//-----------------------------------------------------------------
+$(document).ready(function(){
+    $('#imabutton').click(function(){
+        image = JS9.GetImage();
+        flaskRequest(image.getExportURL());
+        // testReq();
+        // url = image.getExportURL();
+        // console.log(url.substr(url.length - 5));
+        // $.parseXML('images.wtml');
+        // var file = new File([''], 'images.wtml');
+        // console.log(file);
+        // var reader = new FileReader();
+        // console.log(reader.readAsBinaryString(file));
+        // window.open(image.getExportURL());
+        // window.open(cat_url);
+
+        // wwt.setImage(image.getExportURL());
+    })
+});
+
+var cat_url = 'https://i.pinimg.com/736x/92/9d/3d/929d3d9f76f406b5ac6020323d2d32dc--pretty-cats-beautiful-cats.jpg';

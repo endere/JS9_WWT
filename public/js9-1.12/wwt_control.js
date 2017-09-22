@@ -15,14 +15,12 @@ function Goto() {
     // loadExternalImage(null, url, function(result){
     //     console.log(result);
     // })
-    // wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
+    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
     wwt.setForegroundImageByName('Stored Image');
-    wwt.gotoRaDecZoom(10, 5, 10, false);
+    wwt.gotoRaDecZoom($('#Ra').val(), $('#Dec').val(), 10, false);
     }
 
-function test_load(callback){
 
-}
 // function setImage(b){
 //     // var b = wwt.getImagesetByName(a);
 //     wwt.renderContext.set_foregroundImageset(b);
