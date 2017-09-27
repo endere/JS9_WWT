@@ -13,19 +13,17 @@ JS9.Image.prototype.getExportURL = function(){
     img.setAttribute("height", height);
     ctx = img.getContext("2d");
     // image display canvas
-    ctx.drawImage(this.display.canvas, 0, 0);
+    ctx.drawImage(this.display.canvas, 0, 0, width / 2, height / 2);
     for( key in this.layers ){
         if( this.layers.hasOwnProperty(key) ){
         // each layer canvas
         if( this.layers[key].dlayer.dtype === "main" &&
             this.layers[key].show ){
             canvas = this.layers[key].dlayer.canvasjq[0];
-            ctx.drawImage(canvas, 0, 0, width, height);
+            ctx.drawImage(canvas, 0, 0, width / 2, height / 2);
         }
         }
     }
-    console.log(ctx);
-    console.log(img);
     var image = new Image();
     image.src = img.toDataURL('image/png', 1)
     return image['src'];
@@ -35,19 +33,19 @@ $(document).ready(function(){
     $('#submit').click(function(event){
         event.preventDefault();
         image = JS9.GetImage();
-        flaskRequest([image.getExportURL(), $('#Dec').val(), $('#Ra').val()]);
+        flaskRequest([image.getExportURL(), $('#Dec').val(), $('#RA').val()]);
         // flaskRequest(image.getExportURL());
     })
 });
 
-function flaskRequest(attatchment) {
+function flaskRequest(attatchments) {
     $.ajax({
         type: 'POST',
         url: 'https://wwt-js9-server.herokuapp.com/',
         crossDomain: true,
         processData: false,
         contentType: false,
-        data: attatchment
+        data: 'url=' + attatchments[0] + '&Dec=' + attatchments[1] + '&RA=' + attatchments[2]
     }).done(updateImage).fail(failed);
 
 }

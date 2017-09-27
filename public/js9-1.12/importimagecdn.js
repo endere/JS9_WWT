@@ -1,6 +1,6 @@
 
 var parseWtml = function(wtml) {
-
+    console.log(wtml);
     var places = [];
     var constellationInstance;
 
@@ -84,6 +84,7 @@ var parseWtml = function(wtml) {
             }
 
         }
+        console.log(place);
         return place;
     };
 
@@ -122,7 +123,8 @@ var parseWtml = function(wtml) {
             } else {
                 // wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/wtmlreturn');
                 // wwt.setForegroundImageByName('Image File');
-                // console.log(place);
+                console.log(place._studyImageset.url);
+                console.log(place.get_studyImageset());
                 wwtlib.WWTControl.singleton.renderContext.set_foregroundImageset(place.get_studyImageset());
                 wwtlib.WWTControl.singleton.gotoTarget(place, false, false, true);
                 // if (!crossFader) {
@@ -138,6 +140,9 @@ var parseWtml = function(wtml) {
                 }
             }
         };
+
+        //http://www.worldwidetelescope.org/wwtweb/GetTile.aspx?q={1},{2},{3},702440959
+        //http://www.worldwidetelescope.org/wwtweb/GetTile.aspx?q={1},{2},{3},702440959
 
         function getImgWtml() {
             $.ajax({
