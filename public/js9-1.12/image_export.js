@@ -33,7 +33,7 @@ $(document).ready(function(){
     $('#submit').click(function(event){
         event.preventDefault();
         image = JS9.GetImage();
-        flaskRequest([image.getExportURL(), $('#Dec').val(), $('#RA').val()]);
+        flaskRequest([image.getExportURL(), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val()]);
         // flaskRequest(image.getExportURL());
     })
 });
@@ -41,11 +41,11 @@ $(document).ready(function(){
 function flaskRequest(attatchments) {
     $.ajax({
         type: 'POST',
-        url: 'https://wwt-js9-server.herokuapp.com/',
+        url: 'http://wwt-js9-server.herokuapp.com/',
         crossDomain: true,
         processData: false,
         contentType: false,
-        data: 'url=' + attatchments[0] + '&Dec=' + attatchments[1] + '&RA=' + attatchments[2]
+        data: 'url=' + attatchments[0] + '&Dec=' + attatchments[1] + '&RA=' + attatchments[2] + '&Rotation=' + attatchments[3] + '&BaseDegreesPerTile=' + attatchments[4]
     }).done(updateImage).fail(failed);
 
 }
@@ -62,7 +62,7 @@ function failed(response){
 function updateImage() {
     $.ajax({
         type: 'GET',
-        url: 'https://wwt-js9-server.herokuapp.com/',
+        url: 'http://wwt-js9-server.herokuapp.com/',
         crossDomain: true,
         processData: false,
         contentType: false,

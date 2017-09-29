@@ -1,5 +1,5 @@
 function wwtReady() {
-    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images2.wtml');
+    wwt.loadImageCollection('http://wwt-js9-server.herokuapp.com/images.wtml');
 
 }
  
@@ -8,10 +8,10 @@ function initialize() {
     var wwt = wwtlib.WWTControl.initControl("WWTCanvas");
 
     // wwt.add_ready(wwtReady);
-    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images2.wtml');
+    wwt.loadImageCollection('http://wwt-js9-server.herokuapp.com/images.wtml');
     return wwt;
 }
-
+//
 
 function Goto() {
     // var testurl = 'https://wwt-js9-server.herokuapp.com/
@@ -21,20 +21,21 @@ function Goto() {
     // wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images2.wtml');
     // console.log(encodeURIComponent('https://wwt-js9-server.herokuapp.com/'))
     // $('#WorldWideTelescopeControlHost').remove();
-    $('<div/>',{id: 'WorldWideTelescopeControlHost'}).appendTo('body');
-    $('<div/>',{
-    id: 'WWTCanvas',
-    style: 'width: 750px; height: 750px; border-style: none; border-width: 0px;'
-}).appendTo('#WorldWideTelescopeControlHost');
+//     newWindow();
+//     $('<div/>',{id: 'WorldWideTelescopeControlHost'}).appendTo('body');
+//     $('<div/>',{
+//     id: 'WWTCanvas',
+//     style: 'width: 750px; height: 750px; border-style: none; border-width: 0px;'
+// }).appendTo('#WorldWideTelescopeControlHost');
     var wwt = initialize();
     setTimeout(function(){
         wwt.setForegroundImageByName('Stored Image');
         wwt.gotoRaDecZoom($('#RA').val(), $('#Dec').val(), 0.2, false);
-    }, 2000);
+    }, 1000);
 
     }
-
-
+//
+//
 // function setImage(b){
 //     // var b = wwt.getImagesetByName(a);
 //     wwt.renderContext.set_foregroundImageset(b);
