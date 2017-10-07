@@ -29,6 +29,8 @@ function Goto(coordinates) {
 // }).appendTo('#WorldWideTelescopeControlHost');
     console.log(coordinates);
     var wwt = initialize();
+    console.log('here is the dict that is being worked with');
+    console.log(coordinates);
     setTimeout(function(){
         wwt.setForegroundImageByName('Stored Image');
         wwt.gotoRaDecZoom(parseFloat(coordinates['CenterX']), parseFloat(coordinates['CenterY']), 1, false);
