@@ -1,11 +1,9 @@
 JS9.resizeOnLoad = JS9.Load;
 JS9.Load = function(url, opts){
-    JS9.resizeOnLoad(url, opts);
-    setTimeout(function(){
+    function resizeImage(){
         JS9.ResizeDisplay(JS9.GetImageData().width, JS9.GetImageData().height);
-        JS9.SetZoom(1);
-    }, 100);
-
+    }
+    JS9.resizeOnLoad(url, {onload: resizeImage});
 }
 
 JS9.Image.prototype.getExportURL = function(factor, width, height){
@@ -44,20 +42,21 @@ $(document).ready(function(){
     })
     $('#viewInwwt').click(function(event){
         event.preventDefault();
+        try{
         head = JS9.GetImageData('array').header;
         head.lowestPoint = JS9.PixToWCS(0,0).str.replace('+', '').slice(0, -4);
         head.highestPoint = JS9.PixToWCS(JS9.GetImageData().width, JS9.GetImageData().height).str.replace('+', '').slice(0, -4);
-        console.log(head);
+        } catch(TypeError){
+            alert('Please insert a FITS image.');
+        }
         flaskRequest([JS9.GetImage().getExportURL(1, JS9.GetImageData().width, JS9.GetImageData().height), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val(), head], viewImageRequest);
     })
-    console.log('here');
-    JS9.Preload('http://wwt-js9-server.herokuapp.com/image.png');
+    // JS9.Load('http://wwt-js9-server.herokuapp.com/image.fits');
 });
 
 function viewImageRequest(response){
     parsedResp = JSON.parse(response);
-    window.open(`http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=test&ra=${parsedResp['RA']}&dec=${parsedResp['Dec']}&x=${parsedResp['x']}&y=${parsedResp['y']}&scale=${parsedResp['BaseDegreesPerTile']}&rotation=${parsedResp['Rotation']}&imageurl=http://wwt-js9-server.herokuapp.com/${parsedResp['address']}.png`);
-    // deleteAddress(parsedResp['address']);
+    window.open(`http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=${JS9.GetImage().file}&ra=${parsedResp['RA']}&dec=${parsedResp['Dec']}&x=${parsedResp['x']}&y=${parsedResp['y']}&scale=${parsedResp['BaseDegreesPerTile']}&rotation=${parsedResp['Rotation']}&imageurl=http://wwt-js9-server.herokuapp.com/${parsedResp['address']}.png`);
 }
 
 function flaskRequest(attatchments, callback) {
@@ -72,19 +71,6 @@ function flaskRequest(attatchments, callback) {
     }).done(callback).fail(failed);
 }
 
-function deleteAddress(address) {
-    $.ajax({
-        type: 'DELETE',
-        url: `http://wwt-js9-server.herokuapp.com/delete/${address}`,
-        crossDomain: true,
-        processData: false,
-        contentType: false,
-    }).done(finished);
-}
-
-function finished(){
-    console.log('done!!!!!')
-}
 function failed(response){
     console.log(response)
     console.log('failed');

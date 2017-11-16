@@ -1,8 +1,3 @@
-function wwtReady() {
-    wwt.loadImageCollection('http://wwt-js9-server.herokuapp.com/images.wtml');
-
-}
- 
 function initialize(address) {
     var wwt = wwtlib.WWTControl.initControl("WWTCanvas");
     wwt.loadImageCollection(`http://wwt-js9-server.herokuapp.com/${address}.wtml`);
